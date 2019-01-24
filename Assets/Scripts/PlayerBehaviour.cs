@@ -18,6 +18,7 @@ public class PlayerBehaviour : MonoBehaviour {
         {
             //Debug.Log("object" + other.tag);
             audioSource.PlayOneShot(positiveHit);
+            other.gameObject.GetComponent<MeshRenderer>().enabled = false;
             GameManager.instance.Invoke("IncreaseScore",0f);
             Destroy(other.gameObject);
         }

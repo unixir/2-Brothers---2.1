@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
     public GameObject[] players;
     public AudioSource bgAudioSource;
     public static GameMode gameMode;
-    public float timeLevel = 200f, objectSpeed = 7f, decreaseTimeBy, difficultyTime=40f,playerSpeed=10f;
+    public float timeLevel = 200f, objectSpeed, decreaseTimeBy, difficultyTime=40f,playerSpeed=10f;
     public float[] spawnTime;
     public static bool isGamePlaying = false,defPos=true;
     public Animator animator;
@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour {
 
     private bool[] shouldSpawn;
     private float spawnTimeMax;
+
+    private float variableObjectSpeed;
 
     void Awake ()
     {
@@ -132,15 +134,15 @@ public class GameManager : MonoBehaviour {
     {
         pauseButton.SetActive(true);
         defPos = true;
-        objectSpeed = 7f;
+        variableObjectSpeed = objectSpeed;
         timeLevel += Time.time;
         spawnTimeMax = spawnTime[1];
         InvokeRepeating("IncreaseDifficulty", 1f, difficultyTime);
     }
     void IncreaseDifficulty()
     {
-        if (spawnTimeMax - decreaseTimeBy > spawnTime[0]) spawnTimeMax -= decreaseTimeBy;
-        objectSpeed += 1f;
+        //if (spawnTimeMax - decreaseTimeBy > spawnTime[0]) spawnTimeMax -= decreaseTimeBy;
+        variableObjectSpeed += 1f;
     }
     void DisableGame()
     {
@@ -184,11 +186,11 @@ public class GameManager : MonoBehaviour {
 
         if (x == 0)
         {
-            standardSpawners[0].SpawnObject(objectSpeed);
+            standardSpawners[0].SpawnObject(variableObjectSpeed);
         }
         else
         {
-            standardSpawners[1].SpawnObject(objectSpeed);
+            standardSpawners[1].SpawnObject(variableObjectSpeed);
         }
     }
 
