@@ -12,7 +12,7 @@ public class ObjectMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Translate(Vector3.back * moveSpeed * Time.deltaTime);
+        transform.Translate(-Vector3.up * moveSpeed * Time.deltaTime);
 	}
 
 }

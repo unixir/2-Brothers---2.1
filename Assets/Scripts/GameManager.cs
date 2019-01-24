@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
@@ -14,7 +15,8 @@ public class GameManager : MonoBehaviour {
     public GameObject[] players;
     public AudioSource bgAudioSource;
     public static GameMode gameMode;
-    public float timeLevel = 200f, objectSpeed = 7f, spawnTime = 1f,difficultyTime=40f,playerSpeed=10f;
+    public float timeLevel = 200f, objectSpeed = 7f, decreaseTimeBy, difficultyTime=40f,playerSpeed=10f;
+    public float[] spawnTime;
     public static bool isGamePlaying = false,defPos=true;
     public Animator animator;
     PlayerMovement player1Movement, player2Movement;
@@ -24,6 +26,10 @@ public class GameManager : MonoBehaviour {
     public AudioSource[] sfxAudioSources;
     public AudioSource audioSourceGM;
     public AudioClip gameOverFX, buttonClick;
+
+    private bool[] shouldSpawn;
+    private float spawnTimeMax;
+
     void Awake ()
     {
         score = 0;
@@ -37,6 +43,9 @@ public class GameManager : MonoBehaviour {
         standardSpawners = standardSpawnerP.GetComponentsInChildren<Spawner>();
         advancedSpawners = advancedSpawnerP.GetComponentsInChildren<AdvanceSpawner>();
         players = GameObject.FindGameObjectsWithTag("Player");
+        shouldSpawn = new bool[2];
+        shouldSpawn[0] = false;
+        shouldSpawn[1] = false;
         player1Movement = players[1].GetComponent<PlayerMovement>();
         player2Movement = players[0].GetComponent<PlayerMovement>();
         musicVol = musicSlider.value;
@@ -109,6 +118,8 @@ public class GameManager : MonoBehaviour {
         player.SetActive(true);
         Time.timeScale = 1f;
         StartGame();
+        shouldSpawn[0] = true;
+        shouldSpawn[1] = true;
     }
 
     public void PlayBtnClickSound()
@@ -122,14 +133,13 @@ public class GameManager : MonoBehaviour {
         pauseButton.SetActive(true);
         defPos = true;
         objectSpeed = 7f;
-        spawnTime = 1f;
         timeLevel += Time.time;
-        InvokeRepeating("SpawnStandard", 2f, spawnTime);
+        spawnTimeMax = spawnTime[1];
         InvokeRepeating("IncreaseDifficulty", 1f, difficultyTime);
     }
     void IncreaseDifficulty()
     {
-        if (spawnTime - 0.1f > 0) spawnTime -= 0.1f;
+        if (spawnTimeMax - decreaseTimeBy > spawnTime[0]) spawnTimeMax -= decreaseTimeBy;
         objectSpeed += 1f;
     }
     void DisableGame()
@@ -156,12 +166,23 @@ public class GameManager : MonoBehaviour {
         {
             player2Movement.OnClick();
         }
+
+        if (shouldSpawn[0])
+        {
+            shouldSpawn[0] = false;
+            StartCoroutine(WaitBeforeSpawnForOne());
+        }
+        if (shouldSpawn[1])
+        {
+            shouldSpawn[1] = false;
+            StartCoroutine(WaitBeforeSpawnForTwo());
+        }
     }
 
-    void SpawnStandard()
+    void SpawnStandard(int x)
     {
-        
-        if (Random.Range(0, 2)==0)
+
+        if (x == 0)
         {
             standardSpawners[0].SpawnObject(objectSpeed);
         }
@@ -199,6 +220,9 @@ public class GameManager : MonoBehaviour {
         MenuCanvas.gameObject.SetActive(false);
         DisableGame();
         DestroyObjects();
+        shouldSpawn[0] = false;
+        shouldSpawn[1] = false;
+        StopAllCoroutines();
     }
 
     public void IncreaseScore()
@@ -222,6 +246,26 @@ public class GameManager : MonoBehaviour {
         Debug.Log("changing game mode to " + newGameMode);
         gameMode = newGameMode;
     }
+
+    IEnumerator WaitBeforeSpawnForOne()
+    {
+        yield return new WaitForSeconds(Random.Range(spawnTime[0], spawnTimeMax));
+
+        SpawnStandard(0);
+
+        shouldSpawn[0] = true;
+    }
+
+    IEnumerator WaitBeforeSpawnForTwo()
+    {
+        yield return new WaitForSeconds(Random.Range(spawnTime[0], spawnTimeMax));
+
+        SpawnStandard(1);
+
+        shouldSpawn[1] = true;
+    }
+
 }
 
 public enum GameMode {standard, advanced,transitionToAdvanced,transitionToStandard};
+

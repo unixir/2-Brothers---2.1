@@ -3,15 +3,19 @@
 public class Spawner : MonoBehaviour {
 
     public GameObject collectible, obstacle, advancedObstacle;
-    public float firstPosition, secondPosition,zPos=10f;
+    public float firstPosition, secondPosition,zPos=0f;
     Vector3 fPos, sPos;
     public float timeLvl, maxSpawnTime=2f, minSpawnTime = 1f,decreaseFactor=0.2f,spawnTime,
         advancedLvlTime=30f;
     // Use this for initialization
 	void Start () {
         timeLvl = Random.Range(10f, 20f);
-        fPos = new Vector3(firstPosition,0,zPos);
-        sPos = new Vector3(secondPosition,0,zPos);
+
+        float ratio = Screen.height * 1f / Screen.width;
+        Debug.Log(ratio);
+
+        fPos = new Vector3(firstPosition,6,zPos);
+        sPos = new Vector3(secondPosition,6,zPos);
         maxSpawnTime = 2f;
         minSpawnTime = 1f;
         //spawnTime = Random.Range(minSpawnTime, maxSpawnTime);

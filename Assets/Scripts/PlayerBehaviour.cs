@@ -13,7 +13,7 @@ public class PlayerBehaviour : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("OnTriggerEnter");
+        Debug.Log("OnTriggerEnter");
         if (other.tag == "Collectible")
         {
             //Debug.Log("object" + other.tag);

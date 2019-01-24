@@ -3,7 +3,7 @@
 public class AdvanceSpawner : MonoBehaviour {
 
     public GameObject advancedObstacle;
-    public float firstPosition, secondPosition, zPos = -10f;
+    public float firstPosition, secondPosition, zPos = 0f;
     Vector3 fPos, sPos;
     public float timeLvl, maxSpawnTime = 2f, minSpawnTime = 1f, decreaseFactor = 0.2f, spawnTime,
         advancedLvlTime = 20f;
