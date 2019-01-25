@@ -169,6 +169,24 @@ public class GameManager : MonoBehaviour {
             player2Movement.OnClick();
         }
 
+
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                if (Camera.main.ScreenToWorldPoint(touch.position).x > 0)
+                {
+                    player2Movement.OnClick();
+                }
+                else
+                {
+                    player1Movement.OnClick();
+                }
+            }
+        }
+
         if (shouldSpawn[0])
         {
             shouldSpawn[0] = false;
