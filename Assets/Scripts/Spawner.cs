@@ -7,8 +7,14 @@ public class Spawner : MonoBehaviour {
     Vector3 fPos, sPos;
     public float timeLvl, maxSpawnTime=2f, minSpawnTime = 1f,decreaseFactor=0.2f,spawnTime,
         advancedLvlTime=30f;
+
+    public int spawnerNumber;
+
+    public Sprite[] collectibleSprites;
+    public Sprite[] obstacleSprites;
+
     // Use this for initialization
-	void Start () {
+    void Start () {
         timeLvl = Random.Range(10f, 20f);
 
         float ratio = Screen.height * 1f / Screen.width;
@@ -60,10 +66,12 @@ public class Spawner : MonoBehaviour {
         if (Random.Range(0, 2) == 1)
         {
             objectToInstantiate = obstacle;
+            objectToInstantiate.GetComponent<SpriteRenderer>().sprite = obstacleSprites[spawnerNumber];
         }
         else
         {
             objectToInstantiate = collectible;
+            objectToInstantiate.GetComponent<SpriteRenderer>().sprite = collectibleSprites[spawnerNumber];
         }
         if (GameManager.GetGameMode() == GameMode.standard)
         {
@@ -97,10 +105,12 @@ public class Spawner : MonoBehaviour {
         if (Random.Range(0, 2) == 1)
         {
             objectToInstantiate = obstacle;
+            objectToInstantiate.GetComponent<SpriteRenderer>().sprite = obstacleSprites[spawnerNumber];
         }
         else
         {
             objectToInstantiate = collectible;
+            objectToInstantiate.GetComponent<SpriteRenderer>().sprite = collectibleSprites[spawnerNumber];
         }
         if (transform.position == fPos || transform.position == sPos)
         {

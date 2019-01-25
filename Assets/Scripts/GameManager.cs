@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
     private bool[] shouldSpawn;
     private float spawnTimeMax;
 
-    private float variableObjectSpeed;
+    public static float variableObjectSpeed;
 
     void Awake ()
     {
@@ -136,6 +136,7 @@ public class GameManager : MonoBehaviour {
         defPos = true;
         variableObjectSpeed = objectSpeed;
         timeLevel += Time.time;
+        StripGeneratorScript.shouldGenerateStrip = true;
         spawnTimeMax = spawnTime[1];
         InvokeRepeating("IncreaseDifficulty", 1f, difficultyTime);
     }
@@ -243,6 +244,7 @@ public class GameManager : MonoBehaviour {
         shouldSpawn[0] = false;
         shouldSpawn[1] = false;
         StopAllCoroutines();
+        StripGeneratorScript.shouldGenerateStrip = false;
     }
 
     public void IncreaseScore()
