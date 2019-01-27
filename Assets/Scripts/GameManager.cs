@@ -116,8 +116,12 @@ public class GameManager : MonoBehaviour {
         MenuCanvas.gameObject.SetActive(false);
         standardSpawnerP.SetActive(true);
         advancedSpawnerP.SetActive(true);
-        foreach(GameObject player in players)
-        player.SetActive(true);
+        player1Movement.Reset();
+        player2Movement.Reset();
+        foreach (GameObject player in players)
+        {
+            player.SetActive(true);
+        }
         Time.timeScale = 1f;
         StartGame();
         shouldSpawn[0] = true;
@@ -136,7 +140,6 @@ public class GameManager : MonoBehaviour {
         defPos = true;
         variableObjectSpeed = objectSpeed;
         timeLevel += Time.time;
-        StripGeneratorScript.shouldGenerateStrip = true;
         spawnTimeMax = spawnTime[1];
         InvokeRepeating("IncreaseDifficulty", 1f, difficultyTime);
     }
@@ -175,15 +178,20 @@ public class GameManager : MonoBehaviour {
         {
             Touch touch = Input.GetTouch(0);
 
+            Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+
             if (touch.phase == TouchPhase.Began)
             {
-                if (Camera.main.ScreenToWorldPoint(touch.position).x > 0)
+                if (!(touchPos.x <= -1.55 && touchPos.x >= -2.5 && touchPos.y >= 4 && touchPos.y <= 5))
                 {
-                    player2Movement.OnClick();
-                }
-                else
-                {
-                    player1Movement.OnClick();
+                    if (Camera.main.ScreenToWorldPoint(touch.position).x > 0)
+                    {
+                        player2Movement.OnClick();
+                    }
+                    else
+                    {
+                        player1Movement.OnClick();
+                    }
                 }
             }
         }
@@ -244,7 +252,6 @@ public class GameManager : MonoBehaviour {
         shouldSpawn[0] = false;
         shouldSpawn[1] = false;
         StopAllCoroutines();
-        StripGeneratorScript.shouldGenerateStrip = false;
     }
 
     public void IncreaseScore()

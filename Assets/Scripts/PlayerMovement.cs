@@ -6,14 +6,30 @@ public class PlayerMovement : MonoBehaviour {
     public Animator playerAC;
     public float moveSpeed,transitionSpeed=5f;
     public bool isOnFirstPos = true, advancedPosition=false, isOnAdFirstPos=false;
-    public bool positionFirst=true;
+    public bool positionFirst;
 
     public void Start()
     {
         playerAC = GetComponent<Animator>();
-        isOnFirstPos = positionFirst;
-        playerAC.SetBool("OnFirstPos", isOnFirstPos);
+        Reset();
+        //playerAC.SetBool("OnFirstPos", isOnFirstPos);
         
+    }
+
+    public void Reset()
+    {
+
+        isOnFirstPos = positionFirst;
+        Debug.Log("ehere 1");
+        if (isOnFirstPos)
+        {
+            transform.position = new Vector3(0 + transform.parent.position.x, transform.position.y, transform.position.z);
+        }
+        else
+        {
+            transform.position = new Vector3(1.25f + transform.parent.position.x, transform.position.y, transform.position.z);
+        }
+        transform.rotation = Quaternion.identity;
     }
 
     public void OnClick()
@@ -22,13 +38,14 @@ public class PlayerMovement : MonoBehaviour {
         {
             isOnAdFirstPos = !isOnAdFirstPos;
             playerAC.SetBool("OnAdFirstPos", isOnAdFirstPos);
+            playerAC.SetTrigger("shouldAnimate");
         }
         else
         {
             isOnFirstPos = !isOnFirstPos;
             playerAC.SetBool("OnFirstPos", isOnFirstPos);
+            playerAC.SetTrigger("shouldAnimate");
         }
-        Debug.Log(gameObject.name + " advancedPosition" + advancedPosition + ", isOnAdFirstPos" + isOnAdFirstPos + ", isOnFirstPos" + isOnFirstPos);
     }   
 
 }
