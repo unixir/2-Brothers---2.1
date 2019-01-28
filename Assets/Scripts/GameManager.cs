@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public AudioClip gameOverFX, buttonClick;
     public Animator canvasAnimator;
     public TextMeshProUGUI highscore;
+    public Sprite musicOn, musicOff, sfxOn, sfxOff;
 
     private bool[] shouldSpawn;
     private float spawnTimeMax;
@@ -123,11 +124,13 @@ public class GameManager : MonoBehaviour
         if (musicMainToggle.isOn)
         {
             musicVol = 1f;
+            musicMainToggle.image.sprite = musicOn;
             PlayerPrefs.SetInt("music", 1);
         }
         else
         {
             musicVol = 0f;
+            musicMainToggle.image.sprite = musicOff;
             PlayerPrefs.SetInt("music", 0);
         }
         musicToggle.isOn = musicMainToggle.isOn;
