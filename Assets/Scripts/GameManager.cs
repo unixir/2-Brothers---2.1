@@ -206,6 +206,8 @@ public class GameManager : MonoBehaviour
     {
         PlayBtnClickSound();
         canvasAnimator.SetTrigger("MenuSlideOut");
+        score = 0;
+        scoreText.text = score.ToString();
         if (GameOverCanvas.gameObject.activeInHierarchy)
         {
             canvasAnimator.SetTrigger("GameOverFadeOut");
@@ -231,8 +233,6 @@ public class GameManager : MonoBehaviour
                     isGamePlaying = true;
                     gameMode = GameMode.standard;
                     bgAudioSource.Play();
-                    score = 0;
-                    scoreText.text = score.ToString();
                     //MainGameCanvas.gameObject.SetActive(true);
                     GameOverCanvas.gameObject.SetActive(false);
                     //MenuCanvas.gameObject.SetActive(false);
@@ -242,11 +242,14 @@ public class GameManager : MonoBehaviour
                     StartGame();
                     shouldSpawn[0] = true;
                     shouldSpawn[1] = true;
+                    canvasAnimator.ResetTrigger("MenuSlideOut");
+                    canvasAnimator.ResetTrigger("GameOverFadeOut");
                 }
                 break;
             case 1:
                 {
                     isPaused = false;
+                    canvasAnimator.ResetTrigger("PauseMenuFadeOut");
                 }
                 break;
         }
@@ -288,7 +291,11 @@ public class GameManager : MonoBehaviour
     public void Update()
     {
         if (!isGamePlaying)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+                Application.Quit();
             return;
+        }
         if (Input.GetKeyDown("a"))
         {
             player1Movement.OnClick();
@@ -317,6 +324,28 @@ public class GameManager : MonoBehaviour
                         else
                         {
                             player1Movement.OnClick();
+                        }
+                    }
+                }
+
+                if (Input.touchCount > 1)
+                {
+                    Touch touch2 = Input.GetTouch(1);
+
+                    touchPos = Camera.main.ScreenToWorldPoint(touch2.position);
+
+                    if (touch2.phase == TouchPhase.Began)
+                    {
+                        if (!(touchPos.x <= -1.55 && touchPos.x >= -2.5 && touchPos.y >= 4 && touchPos.y <= 5))
+                        {
+                            if (Camera.main.ScreenToWorldPoint(touch2.position).x > 0)
+                            {
+                                player2Movement.OnClick();
+                            }
+                            else
+                            {
+                                player1Movement.OnClick();
+                            }
                         }
                     }
                 }
@@ -353,11 +382,14 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        PlayBtnClickSound();
-        isPaused = true;
-        canvasAnimator.SetTrigger("MainGameSlideOut");
-        canvasAnimator.SetTrigger("PauseMenuFadeIn");
-        StartCoroutine(WaitForAnimEnd(2, 10));
+        if (isGamePlaying)
+        {
+            PlayBtnClickSound();
+            isPaused = true;
+            canvasAnimator.SetTrigger("MainGameSlideOut");
+            canvasAnimator.SetTrigger("PauseMenuFadeIn");
+            StartCoroutine(WaitForAnimEnd(2, 10));
+        }
     }
 
     public void UnpauseGame()
