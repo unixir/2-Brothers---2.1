@@ -24,14 +24,14 @@ public class RoadScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.isGamePlaying)
+        if (GameManager.isGamePlaying && !GameManager.isPaused)
         {
             transform.Translate(-Vector3.up * GameManager.variableObjectSpeed * Time.deltaTime);
 
             if (transform.position.y <= 3 && !hasCreatedPrev) 
             {
                 hasCreatedPrev = true;
-                GameObject roadClone = Instantiate(road, new Vector3(0, yPos, 0), Quaternion.identity);
+                GameObject roadClone = Instantiate(road, new Vector3(transform.position.x, yPos, 0), Quaternion.identity);
                 roadClone.GetComponent<RoadScript>().yPos = yPos;
                 roadClone.GetComponent<RoadScript>().roadPrev = gameObject;
                 roadClone.GetComponent<RoadScript>().hasPrevRoad = true;

@@ -49,7 +49,7 @@ PlayerSettings:
   m_StereoRenderingPath: 0
   m_ActiveColorSpace: 0
   m_MTRendering: 1
-  m_StackTraceTypes: 000000000000000000000000000000000000000001000000
+  m_StackTraceTypes: 020000000200000002000000020000000200000001000000
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
   iosAppInBackgroundBehavior: 0
@@ -621,7 +621,7 @@ PlayerSettings:
   incrementalIl2cppBuild: {}
   allowUnsafeCode: 0
   additionalIl2CppArgs: 
-  scriptingRuntimeVersion: 1
+  scriptingRuntimeVersion: 0
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
@@ -703,7 +703,7 @@ PlayerSettings:
   facebookStatus: 1
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
-  apiCompatibilityLevel: 6
+  apiCompatibilityLevel: 2
   cloudProjectId: 6e6891b0-7c94-4304-a1eb-8d7e674aa45c
   framebufferDepthMemorylessMode: 0
   projectName: 2 Brothers

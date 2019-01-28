@@ -7,12 +7,20 @@ public class ObjectMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Destroy(gameObject, destroyTime);
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Translate(-Vector3.up * moveSpeed * Time.deltaTime);
+        if (!GameManager.isPaused)
+        {
+            transform.Translate(-Vector3.up * moveSpeed * Time.deltaTime);
+        }
+
+        if (transform.position.y < -6)
+        {
+            Destroy(gameObject);
+        }
 	}
 
 }
