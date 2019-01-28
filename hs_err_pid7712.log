@@ -15,7 +15,7 @@
 #   Set larger code cache with -XX:ReservedCodeCacheSize=
 # This output file may be truncated or incomplete.
 #
-#  Out of Memory Error (memory/allocation.inline.hpp:61), pid=26688, tid=0x00000000000063ac
+#  Out of Memory Error (memory/allocation.inline.hpp:61), pid=7712, tid=0x0000000000005680
 #
 # JRE version:  (8.0) (build )
 # Java VM: OpenJDK 64-Bit Server VM (25.71-b00 mixed mode windows-amd64 compressed oops)
@@ -24,9 +24,9 @@
 
 ---------------  T H R E A D  ---------------
 
-Current thread (0x000000000287e800):  JavaThread "Unknown thread" [_thread_in_vm, id=25516, stack(0x0000000002580000,0x0000000002680000)]
+Current thread (0x0000000002fee800):  JavaThread "Unknown thread" [_thread_in_vm, id=22144, stack(0x0000000002ff0000,0x00000000030f0000)]
 
-Stack: [0x0000000002580000,0x0000000002680000]
+Stack: [0x0000000002ff0000,0x00000000030f0000]
 [error occurred during error reporting (printing stack bounds), id 0xc0000005]
 
 Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
@@ -38,7 +38,7 @@ Java Threads: ( => current thread )
 
 Other Threads:
 
-=>0x000000000287e800 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=25516, stack(0x0000000002580000,0x0000000002680000)]
+=>0x0000000002fee800 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=22144, stack(0x0000000002ff0000,0x00000000030f0000)]
 
 VM state:not at safepoint (normal execution)
 
@@ -54,16 +54,16 @@ Heap:
  Metaspace       used 777K, capacity 4480K, committed 4480K, reserved 1056768K
   class space    used 74K, capacity 384K, committed 384K, reserved 1048576K
 
-Card table byte_map: [0x0000000011c40000,0x0000000012030000] byte_map_base: 0x000000001182a000
+Card table byte_map: [0x00000000125b0000,0x00000000129a0000] byte_map_base: 0x000000001219a000
 
 Marking Bits: (ParMarkBitMap*) 0x000000007180be50
- Begin Bits: [0x00000000126d0000, 0x0000000014620000)
- End Bits:   [0x0000000014620000, 0x0000000016570000)
+ Begin Bits: [0x0000000013040000, 0x0000000014f90000)
+ End Bits:   [0x0000000014f90000, 0x0000000016ee0000)
 
-Polling page: 0x0000000002690000
+Polling page: 0x00000000017c0000
 
 CodeCache: size=245760Kb used=328Kb max_used=328Kb free=245431Kb
- bounds [0x0000000002880000, 0x0000000002af0000, 0x0000000011880000]
+ bounds [0x00000000031f0000, 0x0000000003460000, 0x00000000121f0000]
  total_blobs=57 nmethods=0 adapters=38
  compilation: enabled
 
@@ -83,16 +83,16 @@ Internal exceptions (0 events):
 No events
 
 Events (10 events):
-Event: 0.027 loading class java/lang/Short
-Event: 0.027 loading class java/lang/Short done
-Event: 0.027 loading class java/lang/Integer
-Event: 0.027 loading class java/lang/Integer done
-Event: 0.027 loading class java/lang/Long
-Event: 0.027 loading class java/lang/Long done
-Event: 0.028 loading class java/lang/NullPointerException
-Event: 0.028 loading class java/lang/NullPointerException done
-Event: 0.028 loading class java/lang/ArithmeticException
-Event: 0.028 loading class java/lang/ArithmeticException done
+Event: 0.075 loading class java/lang/Short
+Event: 0.075 loading class java/lang/Short done
+Event: 0.075 loading class java/lang/Integer
+Event: 0.076 loading class java/lang/Integer done
+Event: 0.076 loading class java/lang/Long
+Event: 0.076 loading class java/lang/Long done
+Event: 0.077 loading class java/lang/NullPointerException
+Event: 0.077 loading class java/lang/NullPointerException done
+Event: 0.077 loading class java/lang/ArithmeticException
+Event: 0.077 loading class java/lang/ArithmeticException done
 
 
 Dynamic libraries:
@@ -118,14 +118,14 @@ Dynamic libraries:
 0x0000000071040000 - 0x0000000071889000 	C:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer\Tools\OpenJDK\Windows\jre\bin\server\jvm.dll
 0x00007ffa38300000 - 0x00007ffa38308000 	C:\WINDOWS\System32\PSAPI.DLL
 0x00007ffa336a0000 - 0x00007ffa336a9000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ffa38120000 - 0x00007ffa3818c000 	C:\WINDOWS\System32\WS2_32.dll
 0x00007ffa32630000 - 0x00007ffa32653000 	C:\WINDOWS\SYSTEM32\WINMM.dll
 0x00007ffa2fb70000 - 0x00007ffa2fb7a000 	C:\WINDOWS\SYSTEM32\VERSION.dll
-0x00007ffa38120000 - 0x00007ffa3818c000 	C:\WINDOWS\System32\WS2_32.dll
 0x00007ffa32600000 - 0x00007ffa3262a000 	C:\WINDOWS\SYSTEM32\winmmbase.dll
 0x00007ffa35310000 - 0x00007ffa35359000 	C:\WINDOWS\System32\cfgmgr32.dll
-0x00007ffa32220000 - 0x00007ffa3222f000 	C:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer\Tools\OpenJDK\Windows\jre\bin\verify.dll
-0x00007ffa2a3c0000 - 0x00007ffa2a3e9000 	C:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer\Tools\OpenJDK\Windows\jre\bin\java.dll
-0x00007ffa2e220000 - 0x00007ffa2e236000 	C:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer\Tools\OpenJDK\Windows\jre\bin\zip.dll
+0x00007ffa2e1e0000 - 0x00007ffa2e1ef000 	C:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer\Tools\OpenJDK\Windows\jre\bin\verify.dll
+0x00007ffa17ac0000 - 0x00007ffa17ae9000 	C:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer\Tools\OpenJDK\Windows\jre\bin\java.dll
+0x00007ffa2b6a0000 - 0x00007ffa2b6b6000 	C:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer\Tools\OpenJDK\Windows\jre\bin\zip.dll
 
 VM Arguments:
 java_command: org.gradle.launcher.GradleMain -Dorg.gradle.jvmargs=-Xmx4096m
@@ -147,10 +147,10 @@ OS: Windows 10.0 , 64 bit Build 17134 (10.0.17134.1)
 
 CPU:total 4 (initial active 4) (2 cores per cpu, 2 threads per core) family 6 model 78 stepping 3, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx
 
-Memory: 4k page, physical 8204736k(999396k free), swap 14348704k(5316k free)
+Memory: 4k page, physical 8204736k(819660k free), swap 14348736k(5380k free)
 
 vm_info: OpenJDK 64-Bit Server VM (25.71-b00) for windows-amd64 JRE (1.8.0-adoptopenjdk-_2018_05_19_00_59-b00), built on May 19 2018 01:02:12 by "jenkins" with MS VC++ 10.0 (VS2010)
 
-time: Mon Jan 28 17:33:49 2019
+time: Tue Jan 29 00:09:35 2019
 elapsed time: 0 seconds (0d 0h 0m 0s)
 

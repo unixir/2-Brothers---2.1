@@ -22,16 +22,19 @@ public class GameManager : MonoBehaviour
     public static bool isGamePlaying = false, defPos = true, isPaused;
     public Animator animator;
     public PlayerMovement player1Movement, player2Movement;
-    public float musicVol, sfxVol;
-    public Toggle musicToggle, sfxToggle;
-    public Toggle musicMainToggle, sfxMainToggle;
+    public int musicVol, sfxVol;
     public AudioSource musicAudioSource;
     public AudioSource[] sfxAudioSources;
     public AudioSource audioSourceGM;
     public AudioClip gameOverFX, buttonClick;
     public Animator canvasAnimator;
     public TextMeshProUGUI highscore;
-    public Sprite musicOn, musicOff, sfxOn, sfxOff;
+    public Image music, musicMain, sfx, sfxMain;
+    public Sprite[] icons;
+
+    private bool changeSpeed;
+
+    private float initSpeed, endSpeed, fraction, endTime;
 
     private bool[] shouldSpawn;
     private float spawnTimeMax;
@@ -59,101 +62,78 @@ public class GameManager : MonoBehaviour
         musicVol = PlayerPrefs.GetInt("music", 1);
         if (musicVol == 1)
         {
-            musicToggle.isOn = true;
-            musicMainToggle.isOn = true;
+            music.sprite = icons[1];
+            musicMain.sprite = icons[1];
             musicAudioSource.volume = 1f;
         } else
         {
-            musicToggle.isOn = false;
-            musicMainToggle.isOn = false;
+            music.sprite = icons[0];
+            musicMain.sprite = icons[0];
             musicAudioSource.volume = 0f;
         }
         sfxVol = PlayerPrefs.GetInt("sfx", 1);
-        if (musicVol == 1)
+        if (sfxVol == 1)
         {
-            sfxToggle.isOn = true;
-            sfxMainToggle.isOn = true;
+            sfx.sprite = icons[3];
+            sfxMain.sprite = icons[3];
             foreach (AudioSource audioSource in sfxAudioSources)
                 audioSource.volume = 1f;
         }
         else
         {
-            sfxToggle.isOn = false;
-            sfxMainToggle.isOn = false;
+            sfx.sprite = icons[2];
+            sfxMain.sprite = icons[2];
             foreach (AudioSource audioSource in sfxAudioSources)
                 audioSource.volume = 0f;
         }
         audioSourceGM = GetComponent<AudioSource>();
         highscore.text = PlayerPrefs.GetInt("highscore", 0).ToString();
-    }
-
-    public void ChangeMusicVol()
-    {
-        if (musicToggle.isOn)
-        {
-            musicVol = 1f;
-            PlayerPrefs.SetInt("music", 1);
-        } else
-        {
-            musicVol = 0f;
-            PlayerPrefs.SetInt("music", 0);
-        }
-        musicMainToggle.isOn = musicToggle.isOn;
-        musicAudioSource.volume = musicVol;
-    }
-
-    public void ChangeSFXVol()
-    {
-        if (sfxToggle.isOn)
-        {
-            sfxVol = 1f;
-            PlayerPrefs.SetInt("sfx", 1);
-        }
-        else
-        {
-            sfxVol = 0f;
-            PlayerPrefs.SetInt("sfx", 0);
-        }
-        sfxMainToggle.isOn = sfxToggle.isOn;
-        foreach (AudioSource audioSource in sfxAudioSources)
-            audioSource.volume = sfxVol;
+        changeSpeed = false;
     }
 
     public void ToggleMusic()
     {
-        if (musicMainToggle.isOn)
+        musicVol++;
+        musicVol = musicVol % 2;
+        if (musicVol == 1)
         {
-            musicVol = 1f;
-            musicMainToggle.image.sprite = musicOn;
-            PlayerPrefs.SetInt("music", 1);
+            music.sprite = icons[1];
+            musicMain.sprite = icons[1];
+            musicAudioSource.volume = 1f;
         }
         else
         {
-            musicVol = 0f;
-            musicMainToggle.image.sprite = musicOff;
-            PlayerPrefs.SetInt("music", 0);
+            music.sprite = icons[0];
+            musicMain.sprite = icons[0];
+            musicAudioSource.volume = 0f;
         }
-        musicToggle.isOn = musicMainToggle.isOn;
+        PlayerPrefs.SetInt("music", musicVol);
         musicAudioSource.volume = musicVol;
     }
 
     public void ToggleSFX()
     {
-        if (sfxMainToggle.isOn)
+        sfxVol++;
+        sfxVol = sfxVol % 2;
+        if (sfxVol == 1)
         {
-            sfxVol = 1f;
-            PlayerPrefs.SetInt("sfx", 1);
+            sfx.sprite = icons[3];
+            sfxMain.sprite = icons[3];
+            foreach (AudioSource audioSource in sfxAudioSources)
+                audioSource.volume = 1f;
         }
         else
         {
-            sfxVol = 0f;
-            PlayerPrefs.SetInt("sfx", 0);
+            sfx.sprite = icons[2];
+            sfxMain.sprite = icons[2];
+            foreach (AudioSource audioSource in sfxAudioSources)
+                audioSource.volume = 0f;
         }
-        sfxToggle.isOn = sfxMainToggle.isOn;
+        PlayerPrefs.SetInt("sfx", sfxVol);
         foreach (AudioSource audioSource in sfxAudioSources)
             audioSource.volume = sfxVol;
     }
-
+    
     private void Start()
     {
         //ShowMenu();
@@ -178,6 +158,10 @@ public class GameManager : MonoBehaviour
         {
             canvasAnimator.SetTrigger("GameOverFadeOut");
             canvasAnimator.SetTrigger("MainMenuFadeIn");
+        }
+        foreach (GameObject player in players)
+        {
+            player.SetActive(false);
         }
         //MainGameCanvas.gameObject.SetActive(false);
         //GameOverCanvas.gameObject.SetActive(false);
@@ -208,6 +192,8 @@ public class GameManager : MonoBehaviour
     public void PlayGame()
     {
         PlayBtnClickSound();
+        changeSpeed = false;
+        DestroyObjects();
         canvasAnimator.SetTrigger("MenuSlideOut");
         score = 0;
         scoreText.text = score.ToString();
@@ -277,7 +263,11 @@ public class GameManager : MonoBehaviour
     void IncreaseDifficulty()
     {
         //if (spawnTimeMax - decreaseTimeBy > spawnTime[0]) spawnTimeMax -= decreaseTimeBy;
-        variableObjectSpeed += 1f;
+        //changeSpeed = true;
+        //initSpeed = variableObjectSpeed;
+        //endSpeed = variableObjectSpeed + 1f;
+        //endTime = Time.time + 5f;
+        variableObjectSpeed += 1;
     }
     void DisableGame()
     {
@@ -286,8 +276,8 @@ public class GameManager : MonoBehaviour
         MainGameCanvas.gameObject.SetActive(false);
         standardSpawnerP.SetActive(false);
         advancedSpawnerP.SetActive(false);
-        foreach (GameObject player in players)
-            player.SetActive(false);
+        //foreach (GameObject player in players)
+        //    player.SetActive(false);
         pauseScreen.SetActive(false);
     }
 
@@ -307,6 +297,8 @@ public class GameManager : MonoBehaviour
         {
             player2Movement.OnClick();
         }
+
+        Debug.Log(variableObjectSpeed);
 
         if (!isPaused)
         {
@@ -418,9 +410,9 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("highscore", score);
         //MenuCanvas.gameObject.SetActive(false);
         DisableGame();
-        DestroyObjects();
-        shouldSpawn[0] = false;
-        shouldSpawn[1] = false;
+        //DestroyObjects();
+        //shouldSpawn[0] = false;
+        //shouldSpawn[1] = false;
         StopAllCoroutines();
     }
 

@@ -12,15 +12,10 @@ public class ObjectMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!GameManager.isPaused)
-        {
-            transform.Translate(-Vector3.up * moveSpeed * Time.deltaTime);
-        }
-
-        if (transform.position.y < -6)
+        if (transform.position.y - Camera.main.transform.position.y < -6)
         {
             Destroy(gameObject);
         }
-	}
+    }
 
 }

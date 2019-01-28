@@ -15,7 +15,7 @@
 #   Set larger code cache with -XX:ReservedCodeCacheSize=
 # This output file may be truncated or incomplete.
 #
-#  Out of Memory Error (memory/allocation.inline.hpp:61), pid=27464, tid=0x0000000000002a10
+#  Out of Memory Error (memory/allocation.inline.hpp:61), pid=21824, tid=0x0000000000003500
 #
 # JRE version:  (8.0) (build )
 # Java VM: OpenJDK 64-Bit Server VM (25.71-b00 mixed mode windows-amd64 compressed oops)
@@ -24,9 +24,9 @@
 
 ---------------  T H R E A D  ---------------
 
-Current thread (0x0000000002d64000):  JavaThread "Unknown thread" [_thread_in_vm, id=10768, stack(0x0000000002b60000,0x0000000002c60000)]
+Current thread (0x0000000002453800):  JavaThread "Unknown thread" [_thread_in_vm, id=13568, stack(0x0000000002350000,0x0000000002450000)]
 
-Stack: [0x0000000002b60000,0x0000000002c60000]
+Stack: [0x0000000002350000,0x0000000002450000]
 [error occurred during error reporting (printing stack bounds), id 0xc0000005]
 
 Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
@@ -38,7 +38,7 @@ Java Threads: ( => current thread )
 
 Other Threads:
 
-=>0x0000000002d64000 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=10768, stack(0x0000000002b60000,0x0000000002c60000)]
+=>0x0000000002453800 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=13568, stack(0x0000000002350000,0x0000000002450000)]
 
 VM state:not at safepoint (normal execution)
 
@@ -54,16 +54,16 @@ Heap:
  Metaspace       used 777K, capacity 4480K, committed 4480K, reserved 1056768K
   class space    used 74K, capacity 384K, committed 384K, reserved 1048576K
 
-Card table byte_map: [0x0000000012220000,0x0000000012610000] byte_map_base: 0x0000000011e0a000
+Card table byte_map: [0x0000000011910000,0x0000000011d00000] byte_map_base: 0x00000000114fa000
 
 Marking Bits: (ParMarkBitMap*) 0x000000007180be50
- Begin Bits: [0x0000000012cb0000, 0x0000000014c00000)
- End Bits:   [0x0000000014c00000, 0x0000000016b50000)
+ Begin Bits: [0x00000000123a0000, 0x00000000142f0000)
+ End Bits:   [0x00000000142f0000, 0x0000000016240000)
 
-Polling page: 0x0000000000df0000
+Polling page: 0x0000000000970000
 
 CodeCache: size=245760Kb used=328Kb max_used=328Kb free=245431Kb
- bounds [0x0000000002e60000, 0x00000000030d0000, 0x0000000011e60000]
+ bounds [0x0000000002550000, 0x00000000027c0000, 0x0000000011550000]
  total_blobs=57 nmethods=0 adapters=38
  compilation: enabled
 
@@ -83,16 +83,16 @@ Internal exceptions (0 events):
 No events
 
 Events (10 events):
-Event: 0.069 loading class java/lang/Short
-Event: 0.070 loading class java/lang/Short done
-Event: 0.070 loading class java/lang/Integer
-Event: 0.070 loading class java/lang/Integer done
-Event: 0.070 loading class java/lang/Long
-Event: 0.070 loading class java/lang/Long done
-Event: 0.072 loading class java/lang/NullPointerException
-Event: 0.072 loading class java/lang/NullPointerException done
-Event: 0.072 loading class java/lang/ArithmeticException
-Event: 0.072 loading class java/lang/ArithmeticException done
+Event: 0.038 loading class java/lang/Short
+Event: 0.038 loading class java/lang/Short done
+Event: 0.038 loading class java/lang/Integer
+Event: 0.038 loading class java/lang/Integer done
+Event: 0.038 loading class java/lang/Long
+Event: 0.038 loading class java/lang/Long done
+Event: 0.039 loading class java/lang/NullPointerException
+Event: 0.039 loading class java/lang/NullPointerException done
+Event: 0.039 loading class java/lang/ArithmeticException
+Event: 0.040 loading class java/lang/ArithmeticException done
 
 
 Dynamic libraries:
@@ -117,25 +117,24 @@ Dynamic libraries:
 0x0000000072180000 - 0x0000000072252000 	C:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer\Tools\OpenJDK\Windows\jre\bin\msvcr100.dll
 0x0000000071040000 - 0x0000000071889000 	C:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer\Tools\OpenJDK\Windows\jre\bin\server\jvm.dll
 0x00007ffa38300000 - 0x00007ffa38308000 	C:\WINDOWS\System32\PSAPI.DLL
-0x00007ffa336a0000 - 0x00007ffa336a9000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
 0x00007ffa32630000 - 0x00007ffa32653000 	C:\WINDOWS\SYSTEM32\WINMM.dll
-0x00007ffa38120000 - 0x00007ffa3818c000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffa336a0000 - 0x00007ffa336a9000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
 0x00007ffa2fb70000 - 0x00007ffa2fb7a000 	C:\WINDOWS\SYSTEM32\VERSION.dll
-0x00007ffa32600000 - 0x00007ffa3262a000 	C:\WINDOWS\SYSTEM32\WINMMBASE.dll
+0x00007ffa38120000 - 0x00007ffa3818c000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffa32600000 - 0x00007ffa3262a000 	C:\WINDOWS\SYSTEM32\winmmbase.dll
 0x00007ffa35310000 - 0x00007ffa35359000 	C:\WINDOWS\System32\cfgmgr32.dll
-0x00007ffa32220000 - 0x00007ffa3222f000 	C:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer\Tools\OpenJDK\Windows\jre\bin\verify.dll
-0x00007ffa2a3c0000 - 0x00007ffa2a3e9000 	C:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer\Tools\OpenJDK\Windows\jre\bin\java.dll
-0x00007ffa2e220000 - 0x00007ffa2e236000 	C:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer\Tools\OpenJDK\Windows\jre\bin\zip.dll
+0x00007ffa2e1e0000 - 0x00007ffa2e1ef000 	C:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer\Tools\OpenJDK\Windows\jre\bin\verify.dll
+0x00007ffa17ac0000 - 0x00007ffa17ae9000 	C:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer\Tools\OpenJDK\Windows\jre\bin\java.dll
+0x00007ffa2b6a0000 - 0x00007ffa2b6b6000 	C:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer\Tools\OpenJDK\Windows\jre\bin\zip.dll
 
 VM Arguments:
-jvm_args: -Dfile.encoding=UTF-8 -Dcom.android.sdklib.toolsdir=C:\Users\HP\AppData\Local\Android\sdk\tools\bin\\.. 
-java_command: com.android.sdklib.tool.sdkmanager.SdkManagerCli platforms;android-26
+jvm_args: -Dcom.android.sdkmanager.toolsdir=C:\Users\HP\AppData\Local\Android\sdk\tools\bin\\.. 
+java_command: com.android.sdklib.tool.AvdManagerCli list target -c
 java_class_path (initial): C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\dvlib-26.0.0-dev.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\jimfs-1.1.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\jsr305-1.3.9.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\repository-26.0.0-dev.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\j2objc-annotations-1.1.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\layoutlib-api-26.0.0-dev.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\gson-2.3.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\httpcore-4.2.5.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\commons-logging-1.1.1.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\commons-compress-1.12.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\annotations-26.0.0-dev.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\error_prone_annotations-2.0.18.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\animal-sniffer-annotations-1.14.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\httpclient-4.2.6.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\commons-codec-1.6.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\common-26.0.0-dev.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\kxml2-2.3.0.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\httpmime-4.1.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\annotations-12.0.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\sdklib-26.0.0-dev.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\guava-22.0.jar
 Launcher Type: SUN_STANDARD
 
 Environment Variables:
 JAVA_HOME=C:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Tools\OpenJDK\Windows
-JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
 CLASSPATH=C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\dvlib-26.0.0-dev.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\jimfs-1.1.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\jsr305-1.3.9.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\repository-26.0.0-dev.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\j2objc-annotations-1.1.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\layoutlib-api-26.0.0-dev.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\gson-2.3.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\httpcore-4.2.5.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\commons-logging-1.1.1.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\commons-compress-1.12.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\annotations-26.0.0-dev.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\error_prone_annotations-2.0.18.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\animal-sniffer-annotations-1.14.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\httpclient-4.2.6.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\commons-codec-1.6.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\common-26.0.0-dev.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\kxml2-2.3.0.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\httpmime-4.1.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\annotations-12.0.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\sdklib-26.0.0-dev.jar;C:\Users\HP\AppData\Local\Android\sdk\tools\bin\..\lib\guava-22.0.jar
 PATH=C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\nodejs\;C:\Users\HP\AppData\Roaming\npm;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Users\HP\AppData\Local\Android\sdk\platform-tools;C:\Users\HP\AppData\Local\Android\sdk;C:\Program Files\Git\cmd;C:\Python26\;C:\Program Files (x86)\Meld\;c:\Program Files\Java\jdk1.8.0_121\bin;;C:\Android;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\MongoDB\Server\3.4\bin;C:\Users\HP\AppData\Local\Microsoft\WindowsApps;C:\Users\HP\AppData\Local\atom\bin;F:\Documents\Programs\flutter\bin;;C:\Users\HP\AppData\Local\Programs\Microsoft VS Code\bin
 USERNAME=Shimona
@@ -150,10 +149,10 @@ OS: Windows 10.0 , 64 bit Build 17134 (10.0.17134.1)
 
 CPU:total 4 (initial active 4) (2 cores per cpu, 2 threads per core) family 6 model 78 stepping 3, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx
 
-Memory: 4k page, physical 8204736k(1002856k free), swap 14348704k(6000k free)
+Memory: 4k page, physical 8204736k(840264k free), swap 14348736k(5668k free)
 
 vm_info: OpenJDK 64-Bit Server VM (25.71-b00) for windows-amd64 JRE (1.8.0-adoptopenjdk-_2018_05_19_00_59-b00), built on May 19 2018 01:02:12 by "jenkins" with MS VC++ 10.0 (VS2010)
 
-time: Mon Jan 28 17:29:51 2019
-elapsed time: 0 seconds (0d 0h 0m 0s)
+time: Tue Jan 29 00:09:31 2019
+elapsed time: 1 seconds (0d 0h 0m 1s)
 

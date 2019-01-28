@@ -405,6 +405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4124988493178803165}
   - component: {fileID: 4124988493178803164}
+  - component: {fileID: 3701372291918948236}
   m_Layer: 0
   m_Name: Road
   m_TagString: Untagged
@@ -447,3 +448,19 @@ MonoBehaviour:
   roadPrev: {fileID: 0}
   hasPrevRoad: 0
   road: {fileID: 0}
+--- !u!54 &3701372291918948236
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4124988493178803166}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

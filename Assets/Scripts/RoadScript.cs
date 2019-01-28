@@ -9,10 +9,6 @@ public class RoadScript : MonoBehaviour
 
     public float yPos;
 
-    public GameObject roadPrev;
-
-    public bool hasPrevRoad;
-
     public GameObject road;
 
     // Start is called before the first frame update
@@ -26,27 +22,26 @@ public class RoadScript : MonoBehaviour
     {
         if (GameManager.isGamePlaying && !GameManager.isPaused)
         {
-            transform.Translate(-Vector3.up * GameManager.variableObjectSpeed * Time.deltaTime);
+            //transform.Translate(-Vector3.up * GameManager.variableObjectSpeed * Time.deltaTime);
 
-            if (transform.position.y <= 3 && !hasCreatedPrev) 
+            if (transform.position.y <= Camera.main.transform.position.y + 3 && !hasCreatedPrev)
             {
                 hasCreatedPrev = true;
-                GameObject roadClone = Instantiate(road, new Vector3(transform.position.x, yPos, 0), Quaternion.identity);
+                GameObject roadClone = Instantiate(road, new Vector3(transform.position.x, transform.position.y + yPos - 3, 0), Quaternion.identity);
                 roadClone.GetComponent<RoadScript>().yPos = yPos;
-                roadClone.GetComponent<RoadScript>().roadPrev = gameObject;
-                roadClone.GetComponent<RoadScript>().hasPrevRoad = true;
                 roadClone.GetComponent<RoadScript>().road = road;
             }
 
-            if (hasPrevRoad && !roadPrev.ToString().Equals("null"))
-            {
-                transform.position = new Vector3(0, roadPrev.transform.position.y + (yPos - 3), 0);
-            }
+            //if (hasPrevRoad && !roadPrev.ToString().Equals("null"))
+            //{
+            //    transform.position = new Vector3(0, roadPrev.transform.position.y + (yPos - 3), 0);
+            //}
 
-            if (transform.position.y < -10.7)
+            if (transform.position.y - Camera.main.transform.position.y < -10.7)
             {
                 Destroy(gameObject);
             }
         }
     }
+   
 }
