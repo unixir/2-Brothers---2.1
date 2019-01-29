@@ -13,8 +13,6 @@ public class Spawner : MonoBehaviour {
     public Sprite[] collectibleSprites;
     public Sprite[] obstacleSprites;
 
-    private int val;
-
     // Use this for initialization
     void Start () {
         timeLvl = Random.Range(10f, 20f);
@@ -22,6 +20,8 @@ public class Spawner : MonoBehaviour {
         float ratio = Screen.height * 1f / Screen.width;
         Debug.Log(ratio);
 
+        fPos = new Vector3(firstPosition,6,zPos);
+        sPos = new Vector3(secondPosition,6,zPos);
         maxSpawnTime = 2f;
         minSpawnTime = 1f;
         //spawnTime = Random.Range(minSpawnTime, maxSpawnTime);
@@ -48,7 +48,14 @@ public class Spawner : MonoBehaviour {
 
     void FixedUpdate()
     {
-        val = Random.Range(0, 2);
+        if (Random.Range(0, 2) == 1)
+        {
+            transform.position = fPos;
+        }
+        else
+        {
+            transform.position = sPos;
+        }
     }
 
     void SpawnObject()
@@ -105,13 +112,10 @@ public class Spawner : MonoBehaviour {
             objectToInstantiate = collectible;
             objectToInstantiate.GetComponent<SpriteRenderer>().sprite = collectibleSprites[spawnerNumber];
         }
-        if (val == 0)
+        if (transform.position == fPos || transform.position == sPos)
         {
             //Debug.Log("here");
-            Instantiate(objectToInstantiate, new Vector3(firstPosition, transform.position.y, 0), Quaternion.identity);
-        } else
-        {
-            Instantiate(objectToInstantiate, new Vector3(secondPosition, transform.position.y, 0), Quaternion.identity);
+            Instantiate(objectToInstantiate, transform.position, Quaternion.identity);
         }
             
         

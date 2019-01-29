@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour {
     {
 
         isOnFirstPos = positionFirst;
+        Debug.Log("ehere 1");
         if (isOnFirstPos)
         {
             transform.position = new Vector3(0 + transform.parent.position.x, transform.position.y, transform.position.z);
